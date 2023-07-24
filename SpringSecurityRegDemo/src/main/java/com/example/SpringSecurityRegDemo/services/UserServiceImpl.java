@@ -71,6 +71,7 @@ public class UserServiceImpl implements UserService {
        User user = modelMapper.map(userDTO, User.class);
 
        user.setPassword(encoder.encode(user.getPassword()));
+       //adds the roles for the user when creating the user
        user.setRoles(Arrays.asList(roleService.findRoleByRoleName("ROLE_USER")));
 
        userRepository.save(user);
